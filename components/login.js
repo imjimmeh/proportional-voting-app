@@ -10,7 +10,6 @@ export default class Login extends React.Component{
     {
         super(props);
         this.state = { username:'', password: '' };
-
         this.handleChange = this.handleChange.bind(this);
     }
 
