@@ -12,10 +12,10 @@ export const Password: FC<PasswordProps> = (props: PasswordProps) => {
     }
 
     return (
-        <>
+        <div className='form-group'>
             <label htmlFor="Password">Password: </label>
-            <input id="Password" type="password" name="Password" value={password} onChange={(onChangeEvent)} />
-        </>
+            <input id="Password" type="password" name="Password" value={password} onChange={(onChangeEvent)} className='form-control' />
+        </div>
     );
 };
 

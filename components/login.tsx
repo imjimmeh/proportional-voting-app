@@ -24,7 +24,12 @@ export default class Login extends Component<EmptyType, UserLogin>{
             <form>
                 <Username onChangeEvent={this.handleChange}/>
                 <Password onChangeEvent={this.handleChange}/>
-                <button onClick={() => alert(this.state.Username + ' ' + this.state.Password)}/>
+                
+                <div className='form-group'>
+                    <button className='btn btn-primary' onClick={() => alert(this.state.Username + ' ' + this.state.Password)}>
+                        Login
+                    </button>
+                </div>
             </form>
         );
     }

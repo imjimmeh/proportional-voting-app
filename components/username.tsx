@@ -11,10 +11,10 @@ export const Username: FC<UsernameProps> = (props: UsernameProps) => {
   }
 
   return (
-    <>
-      <label htmlFor="Username">Password: </label>
-      <input id="Username" type="text" name="Username" value={username} onChange={onChangeEvent} />
-    </>
+    <div className="form-group">
+      <label htmlFor="Username">Username: </label>
+      <input id="Username" type="text" name="Username" value={username} onChange={onChangeEvent} className="form-control" />
+    </div>
   );
 };
 
