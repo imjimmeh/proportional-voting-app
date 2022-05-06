@@ -1,5 +1,11 @@
 export interface IUser {
-    Id: number;
-    Username: string;
-    CreatedAt: Date;
+    id: number;
+    username: string;
+    createdAt: Date;
+    claims: IClaim[];
+}
+
+export interface IClaim{
+    Type: string;
+    Value: string;
 }

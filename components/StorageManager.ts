@@ -20,6 +20,7 @@ export default class StorageManager{
         return this._instance;
     }
 
+    //Get an item with given key from storage 
     getItem<T>(storageType: StorageType, key: string) : T | null{
         let storage = this.getStorage(storageType);
         let item: any = storage.getItem(key);

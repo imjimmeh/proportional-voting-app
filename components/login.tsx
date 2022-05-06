@@ -3,10 +3,9 @@ import React, {
 } from 'react'
 import { Username } from './username';
 import { Password } from './password';
-import AuthenticationManager from './authenticationmanager';
+import SignInManager from './signInManager';
 import { LoginProps } from "./base/LoginProps";
-import StorageManager from './StorageManager';
-import { StorageType } from '../models/storage/StorageType';
+import { ErrorMessage } from './errorMessage';
 
 export default class Login extends Component<EmptyType, LoginProps>{
     constructor(props: EmptyType)
@@ -16,6 +15,14 @@ export default class Login extends Component<EmptyType, LoginProps>{
         this.onUsernameChange = this.onUsernameChange.bind(this);
         this.onPasswordChange = this.onPasswordChange.bind(this);
         this.login = this.login.bind(this);
+    }
+
+    async componentDidMount()
+    {
+        if(await SignInManager.getInstance().isAuthenticated())
+        {
+            alert("User is authenticated");
+        }
     }
 
     onUsernameChange(event: React.ChangeEvent<HTMLInputElement>) {    
@@ -34,14 +41,8 @@ export default class Login extends Component<EmptyType, LoginProps>{
         try
         {
             event.preventDefault();
-            alert(this.state.Username + " " + this.state.Password);
-            let authenticationResult = await AuthenticationManager.getInstance()
+            await SignInManager.getInstance()
                                 .loginAsync({Username: this.state.Username, Password: this.state.Password});
-
-            if(authenticationResult.isSuccess)
-            {
-                await StorageManager.getInstance().setItem(StorageType.Local, "RefreshToken", authenticationResult.generatedToken);
-            }
         }
         catch(ex: any){
             this.onErrorMessageChange(ex);
@@ -60,9 +61,7 @@ export default class Login extends Component<EmptyType, LoginProps>{
                     </button>
                 </div>
 
-                <div>
-                    <div>{this.state.ErrorMessage}</div>
-                </div>
+               <ErrorMessage ErrorMessage={this.state.ErrorMessage}/>
             </form>
         );
     }

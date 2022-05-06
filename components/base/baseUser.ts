@@ -1,14 +1,16 @@
-import { IUser } from "./IUser";
+import { IClaim, IUser } from "./IUser";
 
 export default class BaseUser implements IUser{
-    Id: number;
-    Username: string;
-    CreatedAt: Date;
-    
+    id: number;
+    username: string;
+    createdAt: Date;
+    claims: IClaim[];
+
     constructor(user: IUser){
-        this.Id = user.Id;
-        this.Username = user.Username;
-        this.CreatedAt = user.CreatedAt ?? new Date();
+        this.id = user.id;
+        this.username = user.username;
+        this.createdAt = user.createdAt ?? new Date();
+        this.claims = user.claims;
     }
 }
 

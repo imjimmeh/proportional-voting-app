@@ -1,15 +1,14 @@
 import BaseUser from '../base/baseUser';
+import { IUser } from '../base/IUser';
 
 export default class User extends BaseUser
 {
-    Username: string;
-    HashedPassword: string;
-    CreatedAt: Date;
+    hashedPassword: string;
 
-    constructor(username: string, hashedPassword: string, id: bigint, createdAt?: Date)
+    constructor(hashedPassword: string, user: IUser)
     {
-        super(id, username, createdAt);
+        super(user);
 
-        this.HashedPassword = hashedPassword;
+        this.hashedPassword = hashedPassword;
     }
 }

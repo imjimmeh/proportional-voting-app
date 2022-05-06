@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Login from '../components/login'
+import {LoggedInUser} from '../components/loggedInUser';
 
 export default function Home() {
   return (
@@ -23,7 +23,7 @@ crossorigin="anonymous"></link>
         <p className={styles.description}>
         </p>
 
-        <Login/>
+      <LoggedInUser/>
 
       </main>
 
