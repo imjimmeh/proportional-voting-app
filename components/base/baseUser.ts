@@ -1,9 +1,14 @@
-export default class BaseUser{
+import { IUser } from "./IUser";
+
+export default class BaseUser implements IUser{
+    Id: number;
     Username: string;
     CreatedAt: Date;
     
-    constructor(username: string, createdAt?: Date){
-        this.Username = username;
-        this.CreatedAt = createdAt ?? new Date();
+    constructor(user: IUser){
+        this.Id = user.Id;
+        this.Username = user.Username;
+        this.CreatedAt = user.CreatedAt ?? new Date();
     }
 }
+
