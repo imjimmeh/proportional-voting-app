@@ -18,4 +18,4 @@ export const Username: FC<UsernameProps> = (props: UsernameProps) => {
   );
 };
 
-export type UsernameProps = HasOnChangeEventType & { Username?: string };
+export type UsernameProps = HasOnChangeEventType & { Username: string };

@@ -3,10 +3,21 @@ import { StorageType } from "../models/storage/StorageType";
 
 
 export default class StorageManager{
+    private static _instance?: StorageManager;
 
     constructor(){
         this.getItem = this.getItem.bind(this);
         this.getStorage = this.getStorage.bind(this);
+        this.setItem = this.setItem.bind(this);
+    }
+
+    public static getInstance() : StorageManager{
+        if(this._instance == null)
+        {
+            this._instance = new StorageManager();
+        }
+
+        return this._instance;
     }
 
     getItem<T>(storageType: StorageType, key: string) : T | null{
@@ -17,9 +28,9 @@ export default class StorageManager{
             return null;
 
         let serialisedResult = JSON.parse(item);
-        let asStorageItem = Object.assign(new StorageItem(), serialisedResult);
+        let asStorageItem = Object.assign(new StorageItem(), serialisedResult) as StorageItem;
 
-        return asStorageItem;
+        return asStorageItem.Item;
     }
 
     setItem(storageType: StorageType, key: string, value: any){

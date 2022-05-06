@@ -19,4 +19,4 @@ export const Password: FC<PasswordProps> = (props: PasswordProps) => {
     );
 };
 
-export type PasswordProps = HasOnChangeEventType & { Password?: string };
+export type PasswordProps = HasOnChangeEventType & { Password: string };

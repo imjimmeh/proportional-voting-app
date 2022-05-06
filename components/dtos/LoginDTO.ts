@@ -1,9 +1,12 @@
-export default class LoginDTO{
-    Username: Readonly<string>;
-    Password: Readonly<string>;
+import { LoginProps } from "../base/LoginProps";
 
-    constructor(username: string, password: string){
-        this.Username = username;
-        this.Password = password;
+export default class LoginDTO{
+    readonly Username : string;
+    readonly Password: string;
+
+    constructor(login: LoginProps){
+        this.Username = login.Username;
+        this.Password = login.Password;
     }
 }
+
