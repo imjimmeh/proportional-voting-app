@@ -5,7 +5,6 @@ import StorageManager from "./StorageManager";
 import { StorageType } from "../models/storage/StorageType";
 import UserDTO from "../models/dtos/UserDTO";
 import HttpService from "./httpService";
-import { createRouter, useRouter } from "next/router";
 
 export default class SignInManager {
     private static instance?: SignInManager;
@@ -70,9 +69,4 @@ function getAuthenticationResponseFromStorage(): TokenLoginResponse | null {
 
 async function writeAuthenticationResponseToStorage(response?: TokenLoginResponse) {
     await StorageManager.getInstance().setItem(StorageType.Local, STORAGE_KEY, response);
-
-    if(response?.isSuccess == true){
-        let router = useRouter();
-        router.push("/votes");
-    }
 }

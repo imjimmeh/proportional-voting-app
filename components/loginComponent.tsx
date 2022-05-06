@@ -24,7 +24,7 @@ export default class LoginComponent extends Component<LoginProps, LoginState>{
     {
         if(await SignInManager.getInstance().isAuthenticated())
         {
-            alert("User is authenticated");
+            console.log("User is authenticated");
         }
     }
 
@@ -46,6 +46,9 @@ export default class LoginComponent extends Component<LoginProps, LoginState>{
             event.preventDefault();
             var result = await SignInManager.getInstance()
                                 .loginAsync({Username: this.state.Username, Password: this.state.Password});
+
+            if(result != null)
+                this.props.onLoginSuccess(result);
         }
         catch(ex: any){
             this.onErrorMessageChange(ex);
