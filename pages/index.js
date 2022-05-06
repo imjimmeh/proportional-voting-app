@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import {LoggedInUser} from '../components/loggedInUser';
+import Login from './login';
 
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ crossorigin="anonymous"></link>
         <p className={styles.description}>
         </p>
 
-      <LoggedInUser/>
+      <Login/>
 
       </main>
 

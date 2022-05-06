@@ -1,5 +1,5 @@
-import BaseUser from '../base/baseUser';
-import { IUser } from '../base/IUser';
+import BaseUser from '../../models/base/baseUser';
+import { IUser } from '../../models/base/IUser';
 
 export default class User extends BaseUser
 {

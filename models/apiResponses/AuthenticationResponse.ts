@@ -1,4 +1,4 @@
-import UserDTO from "../../components/dtos/UserDTO";
+import UserDTO from "../dtos/UserDTO";
 import { ResponseError } from "./ResponseError";
 import { ApiResponse } from "./ApiResponse";
 export default class AuthenticationResponse implements AuthenticationProps{

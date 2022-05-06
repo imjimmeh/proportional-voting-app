@@ -1,14 +1,17 @@
 import React, {
-    Component
+    Component, EventHandler
 } from 'react'
-import { Username } from './username';
-import { Password } from './password';
-import SignInManager from '../services/signInManager';
-import { LoginProps } from "./base/LoginProps";
-import { ErrorMessage } from './errorMessage';
 
-export default class Login extends Component<EmptyType, LoginProps>{
-    constructor(props: EmptyType)
+import { useRouter } from 'next/router';
+import { Username } from '../components/username';
+import { Password } from '../components/password';
+import SignInManager from '../services/signInManager';
+import { LoginState } from "../models/base/LoginState";
+import { ErrorMessage } from '../models/base/errorMessage';
+import TokenLoginResponse from '../models/apiResponses/AuthenticationResponse';
+
+export default class LoginComponent extends Component<LoginProps, LoginState>{
+    constructor(props: LoginProps)
     {
         super(props);
         this.state = {Username: "", Password: "", ErrorMessage: ""};
@@ -41,7 +44,7 @@ export default class Login extends Component<EmptyType, LoginProps>{
         try
         {
             event.preventDefault();
-            await SignInManager.getInstance()
+            var result = await SignInManager.getInstance()
                                 .loginAsync({Username: this.state.Username, Password: this.state.Password});
         }
         catch(ex: any){
@@ -49,8 +52,8 @@ export default class Login extends Component<EmptyType, LoginProps>{
         }
     }
 
-    render(){
-        return (
+    render() {
+        return(
             <form>
                 <Username Username={this.state.Username} onChangeEvent={this.onUsernameChange}/>
                 <Password Password={this.state.Password} onChangeEvent={this.onPasswordChange}/>
@@ -61,10 +64,12 @@ export default class Login extends Component<EmptyType, LoginProps>{
                     </button>
                 </div>
 
-               <ErrorMessage ErrorMessage={this.state.ErrorMessage}/>
+            <ErrorMessage ErrorMessage={this.state.ErrorMessage}/>
             </form>
-        );
+            );
     }
 }
 
-type EmptyType = {};
+type LoginProps = { onLoginSuccess: OnLoginSuccessFunction;}
+
+type OnLoginSuccessFunction = {(response: TokenLoginResponse): void;};

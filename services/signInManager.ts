@@ -1,10 +1,11 @@
-import LoginDTO from "../components/dtos/LoginDTO";
+import LoginDTO from "../models/dtos/LoginDTO";
 import AuthenticationManagerOptions from "../components/options/AuthenticationManagerProps";
 import TokenLoginResponse from '../models/apiResponses/AuthenticationResponse';
 import StorageManager from "./StorageManager";
 import { StorageType } from "../models/storage/StorageType";
-import UserDTO from "../components/dtos/UserDTO";
+import UserDTO from "../models/dtos/UserDTO";
 import HttpService from "./httpService";
+import { createRouter, useRouter } from "next/router";
 
 export default class SignInManager {
     private static instance?: SignInManager;
@@ -68,6 +69,10 @@ function getAuthenticationResponseFromStorage(): TokenLoginResponse | null {
 }
 
 async function writeAuthenticationResponseToStorage(response?: TokenLoginResponse) {
-    console.log(`writing ${response} to storage`);
     await StorageManager.getInstance().setItem(StorageType.Local, STORAGE_KEY, response);
+
+    if(response?.isSuccess == true){
+        let router = useRouter();
+        router.push("/votes");
+    }
 }

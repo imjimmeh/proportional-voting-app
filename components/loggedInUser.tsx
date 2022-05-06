@@ -1,6 +1,6 @@
 import { FC, useEffect, useState } from "react";
-import UserDTO from "./dtos/UserDTO";
-import Login from "./login";
+import UserDTO from "../models/dtos/UserDTO";
+import Login from "../pages/login";
 import SignInManager from "../services/signInManager";
 
 export const LoggedInUser: FC<JSX.Element> = () => {
