@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import UserDTO from "./dtos/UserDTO";
 import Login from "./login";
-import SignInManager from "./signInManager";
+import SignInManager from "../services/signInManager";
 
 export const LoggedInUser: FC<JSX.Element> = () => {
     const [username, setUsername] = useState<string | null>("");
@@ -28,5 +28,3 @@ export const LoggedInUser: FC<JSX.Element> = () => {
         <Login/>
     )
 }
-
-type LoggedInUserProps = {};

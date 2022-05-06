@@ -1,5 +1,6 @@
-import UserDTO from "./UserDTO";
-
+import UserDTO from "../../components/dtos/UserDTO";
+import { ResponseError } from "./ResponseError";
+import { ApiResponse } from "./ApiResponse";
 export default class AuthenticationResponse implements AuthenticationProps{
 
     constructor(props?: AuthenticationProps)
@@ -9,7 +10,6 @@ export default class AuthenticationResponse implements AuthenticationProps{
         this.responseTime = props?.responseTime ?? new Date();
         this.isSuccess = props?.isSuccess ?? false;
         this.errorMessages = props?.errorMessages;
-
         this.isAuthenticated = this.user != null && this.isSuccess;
     }
 
@@ -17,21 +17,12 @@ export default class AuthenticationResponse implements AuthenticationProps{
     generatedToken?: string;
     responseTime: Date;
     isSuccess: boolean;
-    errorMessages?: ResponseError[] | undefined;
-
+    errorMessages?: ResponseError[];
     isAuthenticated : boolean;
 }
 
-export type AuthenticationProps = {
+export interface AuthenticationProps extends ApiResponse {
     user?: UserDTO;
     generatedToken?: string;
-    responseTime?: Date;
-    isSuccess: boolean;
-    errorMessages?: ResponseError[];
 }
 
-export class ResponseError{
-    constructor(public errorMessage: string){
-
-    }
-}

@@ -1,5 +1,5 @@
 import UserDTO from '../components/dtos/UserDTO';
-import AuthenticationResponse from '../components/dtos/AuthenticationResponse';
+import AuthenticationResponse from '../models/apiResponses/AuthenticationResponse';
 
 export default class UserStore{
 

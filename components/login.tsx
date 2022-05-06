@@ -3,7 +3,7 @@ import React, {
 } from 'react'
 import { Username } from './username';
 import { Password } from './password';
-import SignInManager from './signInManager';
+import SignInManager from '../services/signInManager';
 import { LoginProps } from "./base/LoginProps";
 import { ErrorMessage } from './errorMessage';
 
